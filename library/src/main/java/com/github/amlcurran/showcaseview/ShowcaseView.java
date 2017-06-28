@@ -173,11 +173,11 @@ public class ShowcaseView extends RelativeLayout
         invalidate();
     }
 
-    public void setTarget(final Target target) {
+    public void setTarget(final Target target) throws NullPointerException {
         setShowcase(target, false);
     }
 
-    public void setShowcase(final Target target, final boolean animate) {
+    public void setShowcase(final Target target, final boolean animate) throws NullPointerException {
         postDelayed(new Runnable() {
             @Override
             public void run() {
