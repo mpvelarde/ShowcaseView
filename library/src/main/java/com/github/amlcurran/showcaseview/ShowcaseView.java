@@ -173,11 +173,11 @@ public class ShowcaseView extends RelativeLayout
         invalidate();
     }
 
-    public void setTarget(final Target target) throws NullPointerException {
+    public void setTarget(final Target target) {
         setShowcase(target, false);
     }
 
-    public void setShowcase(final Target target, final boolean animate) throws NullPointerException {
+    public void setShowcase(final Target target, final boolean animate) {
         postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -188,7 +188,16 @@ public class ShowcaseView extends RelativeLayout
                         updateBitmap();
                     }
 
-                    Point targetPoint = target.getPoint();
+                    Target t = target;
+
+                    Point targetPoint;
+                    try{
+                        targetPoint = t.getPoint();
+                    }catch (Exception e){
+                        t = Target.NONE;
+                        targetPoint = t.getPoint();
+                    }
+
                     if (targetPoint != null) {
                         hasNoTarget = false;
                         if (animate) {
